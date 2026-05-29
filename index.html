@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeCare - 家電管理と保証・取説 | 型番・取説・修理先をいつでも手元に</title>
+  <meta name="description" content="家電が壊れたとき「型番どこだっけ」「取説捨てたかも」で困った経験はありませんか？HomeCareなら写真・型番・保証期限をまとめて管理。修理窓口や取説もワンタップで検索。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="HomeCare - 家電管理と保証・取説">
+  <meta property="og:description" content="家電が壊れたとき「型番どこだっけ」で困らない。写真・型番・保証期限を1か所に保存。取説・修理先はワンタップで検索。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chimasaki31-lab.github.io/homecare-lp/">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://chimasaki31-lab.github.io/homecare-lp/">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== パンくず ===== */
+    .breadcrumb {
+      padding: 12px 24px;
+      font-size: 13px;
+      color: #888;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .breadcrumb a {
+      color: #1976d2;
+      transition: opacity 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      opacity: 0.7;
+    }
+
+    /* ===== ヒーローセクション ===== */
+    .hero {
+      background: linear-gradient(160deg, #1565c0 0%, #1976d2 50%, #2196f3 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 48px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      opacity: 0.92;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: opacity 0.2s;
+    }
+
+    .app-store-btn:hover {
+      opacity: 0.85;
+    }
+
+    .app-store-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    .hero-screenshots {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .screenshot-img {
+      width: 150px;
+      height: auto;
+      border-radius: 20px;
+      border: 2px solid rgba(255,255,255,0.25);
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      display: block;
+    }
+
+    /* ===== 課題提起セクション ===== */
+    .problem {
+      background: #fafafa;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .section-label {
+      display: inline-block;
+      color: #1976d2;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.45;
+      margin-bottom: 32px;
+    }
+
+    .problem-list {
+      list-style: none;
+      max-width: 400px;
+      margin: 0 auto 32px;
+      text-align: left;
+    }
+
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 16px;
+    }
+
+    .problem-list li:last-child {
+      border-bottom: none;
+    }
+
+    .problem-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .problem-answer {
+      background: #fff;
+      border: 2px solid #1976d2;
+      border-radius: 16px;
+      padding: 24px 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: #1565c0;
+    }
+
+    /* ===== 機能紹介セクション ===== */
+    .features {
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .feature-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: left;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .feature-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon-wrap.blue { background: #e3f2fd; }
+    .feature-icon-wrap.teal { background: #e0f7f4; }
+    .feature-icon-wrap.orange { background: #fff3e0; }
+
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .search-options {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .search-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #e3f2fd;
+      border: 1px solid #bbdefb;
+      font-size: 14px;
+      color: #1565c0;
+      font-weight: 500;
+    }
+
+    .search-option-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .feature-badge {
+      display: inline-block;
+      background: #1976d2;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ===== 全機能リスト ===== */
+    .all-features {
+      background: #fafafa;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .feature-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+
+    .feature-item .emoji {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .feature-item span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* ===== 使い方セクション ===== */
+    .howto {
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .steps {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+      padding: 20px 0;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 56px;
+      width: 2px;
+      height: calc(100% - 36px);
+      background: #f0f0f0;
+    }
+
+    .step-num {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #1976d2;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ===== プレミアムセクション ===== */
+    .premium {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .premium .section-label {
+      color: #f9ca24;
+    }
+
+    .premium .section-title {
+      color: #fff;
+    }
+
+    .premium-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 400px;
+      margin: 0 auto 32px;
+    }
+
+    .premium-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .premium-card .emoji {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .premium-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .premium-card p {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .price-box {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 360px;
+      margin: 0 auto 24px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .price-row:last-child {
+      border-bottom: none;
+    }
+
+    .price-label {
+      font-size: 15px;
+      opacity: 0.85;
+    }
+
+    .price-value {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .price-note {
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    .price-highlight {
+      font-size: 12px;
+      background: #f9ca24;
+      color: #1a1a2e;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .free-note {
+      font-size: 13px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    /* ===== CTAセクション ===== */
+    .cta {
+      padding: 64px 24px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .cta .section-title {
+      margin-bottom: 10px;
+    }
+
+    .cta-sub {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 32px;
+    }
+
+    .cta .app-store-btn {
+      font-size: 17px;
+      padding: 18px 36px;
+      border-radius: 16px;
+    }
+
+    .cta-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    /* ===== フッター ===== */
+    footer {
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.6);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ===== レスポンシブ ===== */
+    @media (min-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .hero-screenshots { gap: 16px; }
+      .screenshot-img { width: 170px; }
+      .feature-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .premium-cards { display: grid; grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (min-width: 900px) {
+      .feature-cards {
+        flex-direction: row;
+        max-width: 860px;
+      }
+      .feature-card { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== パンくず ===== -->
+<nav class="breadcrumb">
+  <a href="https://chimasaki31-lab.github.io/">MC Labs</a> &rsaquo; HomeCare
+</nav>
+
+<!-- ===== ヒーローセクション ===== -->
+<section class="hero">
+  <div class="hero-badge">📱 iPhone対応 · App Store公開中</div>
+  <h1>家電が壊れたとき、<br>「型番どこだっけ」で<br>困っていませんか？</h1>
+  <p class="hero-sub">
+    写真・型番・保証期限を1か所に保存。<br>
+    取説・修理先はワンタップで検索。<br>
+    30秒で動けます。
+  </p>
+  <a href="#" class="app-store-btn">
+    <svg viewBox="0 0 814 1000"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store からダウンロード
+  </a>
+  <div class="hero-screenshots">
+    <img class="screenshot-img" src="../screenshots/01_list.png" alt="HomeCare 家電リスト画面">
+    <img class="screenshot-img" src="../screenshots/03_support.png" alt="HomeCare サポート検索画面">
+    <img class="screenshot-img" src="../screenshots/05_detail.png" alt="HomeCare 家電詳細画面">
+    <img class="screenshot-img" src="../screenshots/02_notification.png" alt="HomeCare 通知設定画面">
+  </div>
+</section>
+
+<!-- ===== 課題提起セクション ===== -->
+<section class="problem">
+  <div class="section-label">こんなことで困っていませんか？</div>
+  <h2 class="section-title">家電が壊れたとき、<br>毎回ここで詰まる</h2>
+  <ul class="problem-list">
+    <li>
+      <span class="problem-icon">😰</span>
+      <span>型番を調べようとしたら、本体の裏に書いてある小さい文字が読めない</span>
+    </li>
+    <li>
+      <span class="problem-icon">📄</span>
+      <span>取扱説明書をどこに置いたか忘れた、または捨ててしまった</span>
+    </li>
+    <li>
+      <span class="problem-icon">📞</span>
+      <span>修理を依頼したいけど、どのメーカーのどこに電話すればいいかわからない</span>
+    </li>
+    <li>
+      <span class="problem-icon">💸</span>
+      <span>修理してからあとで「保証期間内だったのに…」と気づいて損した</span>
+    </li>
+  </ul>
+  <div class="problem-answer">
+    HomeCareなら<br>30秒で動けます。
+  </div>
+</section>
+
+<!-- ===== 機能紹介セクション（メイン3つ） ===== -->
+<section class="features">
+  <div class="section-label">主な機能</div>
+  <h2 class="section-title">3つの機能で、<br>家電トラブルをすぐ解決</h2>
+  <div class="feature-cards">
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap blue">🔍</div>
+      <h3>困ったとき、即検索</h3>
+      <p>家電の詳細画面から4種類のサポート検索をワンタップで起動。型番・メーカー名が自動で入力されるので、絞り込まれた結果がすぐ表示されます。</p>
+      <div class="search-options">
+        <div class="search-option">
+          <span class="search-option-icon">📖</span>取扱説明書をすぐ開く
+        </div>
+        <div class="search-option">
+          <span class="search-option-icon">📞</span>修理・問い合わせ先を探す
+        </div>
+        <div class="search-option">
+          <span class="search-option-icon">🔧</span>よくあるトラブルを調べる
+        </div>
+        <div class="search-option">
+          <span class="search-option-icon">⚠️</span>エラーコード・症状で原因を調べる
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap teal">📋</div>
+      <h3>型番・写真をまとめて保存</h3>
+      <p>商品名・カテゴリ・型番・メーカー・購入日・保証期間・写真をすべて1か所に登録。修理業者への問い合わせ時、型番をその場で確認できます。引越しや家電整理にも役立ちます。</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon-wrap orange">🔔</div>
+      <h3>保証切れ通知で<br>ムダな実費修理ゼロ<span class="feature-badge">プレミアム</span></h3>
+      <p>保証が切れる30日前・7日前・当日に自動でプッシュ通知。「保証期間内だったのに知らずに実費修理してしまった」という損を防ぎます。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 全機能リスト ===== -->
+<section class="all-features">
+  <div class="section-label">全機能</div>
+  <h2 class="section-title">必要な機能が<br>全部そろっています</h2>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <span class="emoji">🏠</span>
+      <span>家電リスト管理</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">🔍</span>
+      <span>サポート即検索</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">📷</span>
+      <span>写真保存</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">🔢</span>
+      <span>型番メモ</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">🛡️</span>
+      <span>保証期限管理</span>
+    </div>
+    <div class="feature-item">
+      <span class="emoji">🔔</span>
+      <span>保証切れ通知</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 使い方セクション ===== -->
+<section class="howto">
+  <div class="section-label">使い方</div>
+  <h2 class="section-title">3ステップで<br>かんたんに始められます</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>アプリをダウンロード</h4>
+        <p>App Storeから無料でダウンロード。アカウント登録は不要です。すぐに使えます。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>家電を登録する</h4>
+        <p>写真・型番・メーカー・購入日・保証期間を入力して保存。冷蔵庫・洗濯機・エアコンなど、家にある家電をまとめて登録しておきましょう。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>壊れたらワンタップで解決</h4>
+        <p>家電を選んでサポート検索をタップするだけ。取説・修理窓口・トラブル情報がすぐ見つかります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== プレミアムセクション ===== -->
+<section class="premium">
+  <div class="section-label">プレミアムプラン</div>
+  <h2 class="section-title">買い切り¥800で<br>ずっと使えます</h2>
+  <div class="premium-cards">
+    <div class="premium-card">
+      <span class="emoji">🏠</span>
+      <div>
+        <h4>登録台数が無制限に</h4>
+        <p>無料版は3台まで。プレミアムなら何台でも登録可能</p>
+      </div>
+    </div>
+    <div class="premium-card">
+      <span class="emoji">🔔</span>
+      <div>
+        <h4>保証期限の通知機能</h4>
+        <p>30日前・7日前・当日に自動でプッシュ通知</p>
+      </div>
+    </div>
+  </div>
+  <div class="price-box">
+    <div class="price-row">
+      <span class="price-label">無料版</span>
+      <span class="price-value">¥0 <span class="price-note">（3台まで）</span></span>
+    </div>
+    <div class="price-row">
+      <span class="price-label">プレミアム <span class="price-highlight">買い切り</span></span>
+      <span class="price-value">¥800</span>
+    </div>
+  </div>
+  <p class="free-note">一度の購入で永続的にご利用いただけます。<br>月額費用はかかりません。</p>
+</section>
+
+<!-- ===== ダウンロードCTAセクション ===== -->
+<section class="cta">
+  <h2 class="section-title">今すぐダウンロード</h2>
+  <p class="cta-sub">家電の情報を、スマホ1台にまとめましょう。</p>
+  <a href="#" class="app-store-btn">
+    <svg viewBox="0 0 814 1000" width="24" height="24" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.3 134.4-316.7 266.8-316.7 99.8 0 162.6 64.8 212.7 64.8 46.2 0 121.2-68.8 228.5-68.8zm-88-174c43.8-51.7 74.6-123.5 74.6-195.3 0-10.3-.6-20.7-2.6-29.2-70.7 2.6-154.7 47.1-204.7 107.2-38.4 44.4-75.9 116.2-75.9 189 0 11.6 1.9 23.2 2.6 26.9 4.5.6 11.6 1.9 18.7 1.9 63.5 0 143.9-42.5 187.3-100.5z"/></svg>
+    App Store からダウンロード
+  </a>
+  <p class="cta-note">iOS 16以降対応 · iPhone対応 · データはデバイス内に保存</p>
+</section>
+
+<!-- ===== フッター ===== -->
+<footer>
+  <div class="footer-links">
+    <a href="https://chimasaki31-lab.github.io/">MC Labs トップへ</a>
+    <a href="https://chimasaki31-lab.github.io/ketsuatsu-ai/">血圧手帳AI</a>
+    <a href="https://chimasaki31-lab.github.io/bakusoku-vocab-lp/">爆速英単語</a>
+    <a href="https://chimasaki31-lab.github.io/bakusoku-keisan-drill-lp/">爆速計算ドリル</a>
+    <a href="https://chimasaki31-lab.github.io/shunnsoku-keisan-lp/">瞬速計算マスター</a>
+    <a href="https://sites.google.com/view/homecare-privacypolicy/">プライバシーポリシー</a>
+    <a href="mailto:chimasaki31@gmail.com">お問い合わせ</a>
+  </div>
+  <p>© 2026 MC Labs. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
