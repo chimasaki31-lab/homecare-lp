@@ -120,8 +120,15 @@
     .hero-screenshots {
       display: flex;
       gap: 12px;
-      justify-content: center;
-      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      padding: 0 24px 12px;
+      scrollbar-width: none;
+    }
+
+    .hero-screenshots::-webkit-scrollbar {
+      display: none;
     }
 
     .screenshot-img {
@@ -132,6 +139,7 @@
       flex-shrink: 0;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       display: block;
+      scroll-snap-align: start;
     }
 
     /* ===== 課題提起セクション ===== */
